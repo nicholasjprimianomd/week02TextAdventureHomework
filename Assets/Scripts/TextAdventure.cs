@@ -68,7 +68,6 @@ public class TextAdventure : MonoBehaviour
 			if (Input.GetKeyDown (KeyCode.Q)) {
 				currentRoom = "A Hallway";
 			} 
-
 		} else if (currentRoom == "The Hallway in Front of the Door") {
 			textBuffer += "\nIts Locked!!";
 			textBuffer += "\nPress [Q] to go back";
