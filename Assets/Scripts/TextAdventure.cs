@@ -22,7 +22,7 @@ public class TextAdventure : MonoBehaviour
 			if (hasWeapon && !deadZombie) {
 				textBuffer += "\nYou (still) hear a noise.";
 			} else if (deadZombie) {
-				textBuffer += "\nThere's no sound and it looks like the new key opens that door.";
+				textBuffer += "\nThere's no sound anymore and it looks like the new key opens that door.";
 				textBuffer += "\nLets get out of here!";
 			} else {
 				textBuffer += "\nYou hear a noise.";
