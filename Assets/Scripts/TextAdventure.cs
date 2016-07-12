@@ -6,7 +6,7 @@ using System.Security.Policy;
 public class TextAdventure : MonoBehaviour
 {
 
-	private string currentRoom = "A Spookey Hallway";
+	private string currentRoom = "A Spooky Hallway";
 	private bool hasWeapon = false;
 	private bool hasKey = false;
 	private bool deadZombie = false;
@@ -16,7 +16,7 @@ public class TextAdventure : MonoBehaviour
 		string textBuffer = "You are currently in: " + currentRoom + "\n";
 
 		//Inital room
-		if (currentRoom == "A Spookey Hallway") {
+		if (currentRoom == "A Spooky Hallway") {
 			if (hasWeapon && !deadZombie) {
 				textBuffer += "\nYou (still) hear a noise.";
 			} else if (deadZombie) {
@@ -46,7 +46,7 @@ public class TextAdventure : MonoBehaviour
 				textBuffer += "\nYou are eaten by a zombie.";
 				textBuffer += "\nPress [Q] to try again.";
 				if (Input.GetKeyDown (KeyCode.Q)) {
-					currentRoom = "A Spookey Hallway";
+					currentRoom = "A Spooky Hallway";
 				} 
 			} else { //Correct path - find key
 				hasKey = true;
@@ -55,7 +55,7 @@ public class TextAdventure : MonoBehaviour
 				textBuffer += "\nAnd look, you found a key.";
 				textBuffer += "\nPress [Q] to head back.";
 				if (Input.GetKeyDown (KeyCode.Q)) {
-					currentRoom = "A Spookey Hallway";
+					currentRoom = "A Spooky Hallway";
 				}
 			}
 		} else if (currentRoom == "A Corner") {
@@ -66,7 +66,7 @@ public class TextAdventure : MonoBehaviour
 			}
 			textBuffer += "\nPress [Q] to go back.";
 			if (Input.GetKeyDown (KeyCode.Q)) {
-				currentRoom = "A Spookey Hallway";
+				currentRoom = "A Spooky Hallway";
 			}	
 		} else if (currentRoom == "A Closet") {
 			hasWeapon = true;
@@ -74,19 +74,19 @@ public class TextAdventure : MonoBehaviour
 			textBuffer += "\nWhat about that sound from the Hallway?";
 			textBuffer += "\nPress [Q] to go back";
 			if (Input.GetKeyDown (KeyCode.Q)) {
-				currentRoom = "A Spookey Hallway";
+				currentRoom = "A Spooky Hallway";
 			} 
 		} else if (currentRoom == "The Same Corner") { //Check for weapon again
 			textBuffer += "\nStop looking for more weapons you can't carry them.";
 			textBuffer += "\nPress [Q] to go back to the Hallway.";
 			if (Input.GetKeyDown (KeyCode.Q)) {
-				currentRoom = "A Spookey Hallway";
+				currentRoom = "A Spooky Hallway";
 			} 
 		} else if (currentRoom == "The Hallway in Front of the Door") {
 			textBuffer += "\nIts Locked!!";
 			textBuffer += "\nPress [Q] to go back";
 			if (Input.GetKeyDown (KeyCode.Q)) {
-				currentRoom = "A Spookey Hallway";
+				currentRoom = "A Spooky Hallway";
 			}
 		} else if (currentRoom == "Outside") { //Win Condition
 			textBuffer += "\nYou're Safe!";
