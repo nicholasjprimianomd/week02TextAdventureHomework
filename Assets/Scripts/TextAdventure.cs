@@ -6,8 +6,8 @@ using System.Security.Policy;
 public class TextAdventure : MonoBehaviour
 {
 
-	string currentRoom = "Lobby";
-
+	string currentRoom = "roomNoise";
+	bool hasWeapon = false;
 	// Use this for initialization
 	void Start ()
 	{
@@ -17,37 +17,56 @@ public class TextAdventure : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-
 		string textBuffer = "You are currently in: " + currentRoom;
-		bool hasStudentID = false;
 
-		if (currentRoom == "Lobby") {
-			textBuffer += "\nYou see the security gaurd.";
-			textBuffer += "\nPress [W] to go to the elevators";
-			textBuffer += "\nPress [S] to go outside.";
+
+		if (currentRoom == "roomNoise") {
+			textBuffer += "\nYou hear a strange noise.";
+			textBuffer += "\nPress [W] to investigate.";
+			textBuffer += "\nPress [S] to look for a weapon.";
 			if (Input.GetKeyDown (KeyCode.W)) {
-				currentRoom = "Elevators";
-			} else if (Input.GetKeyDown (KeyCode.S)) {
-				currentRoom = "Outside";	
+				currentRoom = "roomInvestigate";
+			} else if (Input.GetKeyDown (KeyCode.S) && hasWeapon == false) {
+				currentRoom = "roomWeapon";	
+			} else if (Input.GetKeyDown (KeyCode.S) && hasWeapon) {
+				textBuffer += "\nStop looking for more weapons you can't carry them.";
+				textBuffer += "\nPress [Q] to go back";
+				if (Input.GetKeyDown (KeyCode.Q)) {
+					currentRoom = "roomNoise";
+				} 
 			}
-		} else if (currentRoom == "Elevators") {
-			textBuffer += "\nYou are waiting";
-			if (hasStudentID == false) {
-				textBuffer += "\nYou can't go in without your ID car, though...";
+		} else if (currentRoom == "roomInvestigate") {
+			if (hasWeapon == false) {
+				textBuffer += "\nYou are eaten by a zombie.";
+				textBuffer += "\nPress [Q] to try again.";
+				if (Input.GetKeyDown (KeyCode.Q)) {
+					currentRoom = "roomNoise";
+				} 
 			} else {
-				textBuffer += "\nYou swipe your student ID and the gaur smiles.";
+				textBuffer += "\nYou killed the zombie!";
+				textBuffer += "\nPress [Q] to kill it again.";
+				if (Input.GetKeyDown (KeyCode.Q)) {
+					currentRoom = "roomNoise";
+				}
 			}
-			//TODO: add choice to take elevator up to the classroom?
-		} else if (currentRoom == "Outside") {
-			textBuffer += "\nIT IS REALY HOT WHAT IS WRONG WITH YOU";
-			textBuffer += "\npress [S] to go back INSIDE,LIKE RIGHT NOW";
-			textBuffer += "\n(oh hey you found your student IF on the floor!)";
-			hasStudentID = true;
-			if (Input.GetKeyDown (KeyCode.S)) {
-				currentRoom = "Lobby";
+		} else if (currentRoom == "roomWeapon") {
+			textBuffer += "\nWhat's that pointy thing over there?";
+			textBuffer += "\npress [W] to find out.";
+			if (Input.GetKeyDown (KeyCode.W)) {
+				currentRoom = "roomChainsaw";
 			}
+			textBuffer += "\npress [Q] to go back.";
+			if (Input.GetKeyDown (KeyCode.Q)) {
+				currentRoom = "roomNoise";
+			}	
+		} else if (currentRoom == "roomChainsaw") {
+			hasWeapon = true;
+			textBuffer += "\nYou found a chainsaw!";
+			textBuffer += "\nPress [Q] to go back";
+			if (Input.GetKeyDown (KeyCode.Q)) {
+				currentRoom = "roomNoise";
+			} 	
 		}
 		GetComponent<Text> ().text = textBuffer;
-
 	}
 }
