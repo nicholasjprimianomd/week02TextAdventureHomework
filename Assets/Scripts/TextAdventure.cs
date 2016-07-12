@@ -15,7 +15,11 @@ public class TextAdventure : MonoBehaviour
 		string textBuffer = "You are currently in: " + currentRoom;
 
 		if (currentRoom == "A Hallway") {
-			textBuffer += "\nYou hear a strange noise.";
+			if (hasWeapon) {
+				textBuffer += "\nYou (still) hear a noise.";
+			} else {
+				textBuffer += "\nYou hear a noise.";
+			}
 			textBuffer += "\nPress [Q] to turn around and open the door.";
 			textBuffer += "\nPress [W] to investigate.";
 			textBuffer += "\nPress [S] to look for a weapon.";
@@ -51,7 +55,7 @@ public class TextAdventure : MonoBehaviour
 				}
 			}
 		} else if (currentRoom == "A Corner") {
-			textBuffer += "\nWhat's that pointy thing over there?";
+			textBuffer += "\nWhat's that pointy thing in the closet?";
 			textBuffer += "\npress [W] to find out.";
 			if (Input.GetKeyDown (KeyCode.W)) {
 				currentRoom = "A Closet";
